@@ -2,7 +2,10 @@ package com.sweeneyb
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonUnwrapped
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer
 import org.springframework.hateoas.ResourceSupport
+import java.time.LocalDate
 import java.util.*
 
 class MenuSupport : ResourceSupport() {
@@ -14,14 +17,15 @@ class Menu {
 
     var id: Long? = null
 
-    @JsonProperty("date2")
-    var date: Date? = null
+    var date: LocalDate? = null
+
+    var date2: Date? = null
 
     var title: String? = null
 
     var text: String? = null
 
-    override fun toString() = "Menu($id,  $date, $title, $text)"
+    override fun toString() = "Menu($id, $date, $date2, $title, $text)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

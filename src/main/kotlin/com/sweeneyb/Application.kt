@@ -2,6 +2,9 @@ package com.sweeneyb
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.springframework.hateoas.PagedResources
 import org.springframework.hateoas.hal.Jackson2HalModule
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -19,6 +22,12 @@ open class DataRestApplication {
 
         val mapper = ObjectMapper()
         mapper.registerModule(Jackson2HalModule())
+        /*
+        This next line solves the following exception:
+        Can not construct instance of java.time.LocalDate: no String-argument constructor/factory
+        method to deserialize from String value ('2018-02-04')
+         */
+        mapper.registerModule(JavaTimeModule())
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         val messageConverter = MappingJackson2HttpMessageConverter()
         messageConverter.objectMapper = mapper
