@@ -1,9 +1,6 @@
 package com.sweeneyb
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonUnwrapped
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer
 import org.springframework.hateoas.ResourceSupport
 import java.time.LocalDate
 import java.util.*
