@@ -2,8 +2,6 @@ package com.sweeneyb
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.springframework.hateoas.PagedResources
 import org.springframework.hateoas.hal.Jackson2HalModule
@@ -33,10 +31,14 @@ open class DataRestApplication {
         messageConverter.objectMapper = mapper
 
         val restTemplate = RestTemplate(listOf(messageConverter))
-        val uri = "http://localhost:8080/menus"
-        val re = restTemplate.getForEntity("http://localhost:8080/menus", Foo::class.java)
-        println(re)
-        re.body.content.forEach({ println(it.menu.title) })
+        var uri: String? = "http://localhost:8080/menus"
+        do {
+            var re = restTemplate.getForEntity(uri, Foo::class.java)
+            re.body.content.forEach({ println(it.menu.title) })
+            uri = re.body?.nextLink?.href
+
+        }
+        while( uri != null)
     }
 
     class Foo<Menu> : PagedResources<MenuSupport>()
