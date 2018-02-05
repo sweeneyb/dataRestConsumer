@@ -35,6 +35,8 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-core'
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas'
     compile group: 'org.springframework.plugin', name: 'spring-plugin-core'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8'
     compile "org.springframework.boot:spring-boot-starter-hateoas"
 }
 
