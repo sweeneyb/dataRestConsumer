@@ -60,7 +60,7 @@ open class DataRestApplication {
 
 
 //    class Foo<MenuSupport>() : PagedResources<MenuSupport >() {    }
-    class Foo<Menu>() : PagedResources<Menu >() {    }
+    class Foo<Menu>() : PagedResources<MenuSupport >() {    }
 
     class Bar<Menu>() : ParameterizedTypeReference<PagedResources<Menu>>() {
 

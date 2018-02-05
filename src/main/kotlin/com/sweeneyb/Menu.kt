@@ -1,5 +1,6 @@
 package com.sweeneyb
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import org.springframework.hateoas.ResourceSupport
 import org.springframework.hateoas.config.EnableHypermediaSupport
@@ -14,22 +15,24 @@ class MenuSupport : ResourceSupport() {
 
 //@EnableHypermediaSupport(type = [EnableHypermediaSupport.HypermediaType.HAL])
 //@Resource
-class Menu : ResourceSupport(){
+class Menu {
 
     var id: Long? = null
 
 //    var restaurant: Restaurant? = null
 
-    var date: LocalDate? = null
-
-    var date2: Date? = null
+//    var date: LocalDate? = null
+    @JsonProperty("date2")
+      var date: Date? = null
+//    var date2: Date? = null
 
     var title: String? = null
 
     var text: String? = null
 
-    //    override fun toString() = "Menu($id, ${restaurant?.id}, $date, $date2, $title, $text)"
-    override fun toString() = "Menu($id, $date, $date2, $title, $text)"
+//        override fun toString() = "Menu($id, ${restaurant?.id}, $date, $date2, $title, $text)"
+//    override fun toString() = "Menu($id, $date, $date2, $title, $text)"
+    override fun toString() = "Menu($id,  $date, $title, $text)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
